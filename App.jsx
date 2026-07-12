@@ -45,6 +45,13 @@ import salesWix from './sales-wix.png';
 import salesTypography from './sales-typography.png';
 import salesLanding from './sales-landing.png';
 import salesColors from './sales-colors.png';
+import systemsHeroSticker from './systems-hero-sticker.png';
+import systemsBadgeProcess from './systems-badge-process.png';
+import systemsBadgeMedical from './systems-badge-medical.png';
+import systemsBadgeWater from './systems-badge-water.png';
+import systemsBadgeRutf from './systems-badge-rutf.png';
+import systemsBadgeHeart from './systems-badge-heart.png';
+import systemsSocialMockups from './systems-social-mockups.png';
 
 const links = {
   email: 'mailto:muhammetgeldig@gmail.com',
@@ -359,6 +366,30 @@ const salesShortcutCarousel = [
   { image: salesCarousel2, alt: 'Sales Shortcut logo proposal with compact zig-zag S mark' },
   { image: salesCarousel3, alt: 'Sales Shortcut logo proposal with flowing cursive S arrows' },
   { image: salesCarousel4, alt: 'Sales Shortcut logo proposal with smooth looped percentage curves' },
+];
+
+
+const unicefSystemBadges = [
+  {
+    image: systemsBadgeMedical,
+    alt: 'UNICEF monthly donor medical support badge',
+    caption: 'Inverted colours to add clarity to the contributing aid visual.',
+  },
+  {
+    image: systemsBadgeWater,
+    alt: 'UNICEF monthly donor clean water badge',
+    caption: 'Slight pose change and additional texture to add personality to the illustration.',
+  },
+  {
+    image: systemsBadgeRutf,
+    alt: 'UNICEF monthly donor RUTF therapeutic food badge',
+    caption: 'Slight pose change to add personality to the illustration without obscuring the text.',
+  },
+  {
+    image: systemsBadgeHeart,
+    alt: 'UNICEF monthly donor emotional care badge',
+    caption: 'Visual clarity for the heart shape to avoid misconception.',
+  },
 ];
 
 function CaseMetaCard({ label, value }) {
@@ -678,6 +709,74 @@ function SalesShortcutCaseStudyPage() {
   );
 }
 
+
+function UnicefSystemsCaseStudyPage() {
+  return (
+    <main className="imoney-case-page systems-case-page">
+      <a className="case-back-pill reveal is-visible" href="#/" aria-label="Go back home">← Back home</a>
+
+      <section className="imoney-case-intro case-section-card reveal is-visible">
+        <h1>Creative Systems for UNICEF</h1>
+        <p>Creative Direction for UNICEF Malaysia | Always-On Badge Design System</p>
+      </section>
+
+      <section className="case-meta-grid reveal is-visible">
+        <CaseMetaCard label="Role" value="Creative Direction" />
+        <CaseMetaCard label="Client" value="UNICEF" />
+        <CaseMetaCard label="Year" value="2025" />
+      </section>
+
+      <section className="case-image-block reveal is-visible">
+        <img src={systemsHeroSticker} alt="UNICEF monthly donor badge stickers being held over a blue background" />
+      </section>
+
+      <section className="case-copy-block reveal is-visible">
+        <h2>Challenge</h2>
+        <p>Global UNICEF campaigns arrive fully formed: photography sourced, messaging approved, media budgets allocated. What they don't arrive with is a localised visual language. Every market receives the same assets and is expected to make them work.</p>
+        <p>For UNICEF Malaysia's always-on monthly donation campaigns, that meant a feed of powerful photography with no consistent design element tying the giving mechanic together. Every ad looked different. Nothing was ownable.</p>
+        <p>The problem wasn't awareness. Malaysians knew UNICEF. What the creative lacked was a repeatable visual anchor — something a donor could recognise across formats, across causes, and across time, and immediately associate with the act of monthly giving.</p>
+
+        <h2>Insight</h2>
+        <p>Most creative for NGOs is built to move people. This was built to be used. The difference matters. An emotionally powerful one-off ad fades; a visual system compounds.</p>
+        <p>Every time a badge appeared on a new piece of content, it reinforced the previous one. Donors started to associate the circular mark with the action of giving before they read the copy. That kind of recognition isn't built by a campaign. It's built by a system that outlives the brief.</p>
+      </section>
+
+      <section className="case-image-block reveal is-visible">
+        <img src={systemsBadgeProcess} alt="UNICEF badge process showing draft one without colour and draft two with colour" />
+      </section>
+
+      <section className="case-copy-block reveal is-visible">
+        <h2>Creative Approach</h2>
+        <p>The solution wasn't a campaign. It was a system.</p>
+        <p>I led the creative direction for a badge design system built around four aid categories: food (RUTF therapeutic packets), water, medical support, and emotional care. Each badge shared the same visual architecture — a circular format with curved text reading “Be a monthly donor,” a consistent hand illustration in UNICEF yellow, and a bold blue ground — but carried a distinct object that communicated exactly what a donation provides.</p>
+        <p>The illustration style was a deliberate strategic choice. Aid campaigns typically reach for emotional photography of suffering — real, impactful, but heavy. The badge system worked differently. By using simple, bold illustration, it made the act of giving the emotional centre rather than the evidence of need. A hand offering. A glass of water. A packet of RUTF. The donor becomes part of the image.</p>
+      </section>
+
+      <section className="systems-badge-grid reveal is-visible">
+        {unicefSystemBadges.map((badge) => (
+          <div className="systems-badge-card" key={badge.alt}>
+            <img src={badge.image} alt={badge.alt} />
+            <p>{badge.caption}</p>
+          </div>
+        ))}
+      </section>
+
+      <section className="case-copy-block reveal is-visible">
+        <p>The process was rigorous. Draft one established the concept in outline form — testing composition, object clarity, and legibility of the circular text against the border. Draft two introduced colour. What looked coherent in greyscale fell apart when blue was added: the medical cross disappeared into the background, the heart shape read ambiguously, the RUTF packet competed with the circular type. Each problem was documented and solved individually — colour inversions for the medical badge, pose adjustments on the RUTF hand to clear the text path, additional texture on the water glass to add tactility, and a more defined heart shape to eliminate any visual misreading.</p>
+      </section>
+
+      <section className="case-image-block systems-social-block reveal is-visible">
+        <img src={systemsSocialMockups} alt="UNICEF Malaysia social post mockups using the monthly donor badge system" />
+      </section>
+
+      <section className="case-copy-block reveal is-visible">
+        <p>The final badges were then animated as stickers — bringing personality and motion to what would otherwise be static corners of a static ad. Applied to photography across multiple cause areas (malnutrition, waterborne disease, emergency medical care), the badges functioned as a consistent call-to-action regardless of what image they sat over.</p>
+      </section>
+    </main>
+  );
+}
+
+
 function CaseStudyPage({ slug }) {
   if (slug === 'imoney') {
     return <ImoneyCaseStudyPage />;
@@ -693,6 +792,10 @@ function CaseStudyPage({ slug }) {
 
   if (slug === 'shortcut') {
     return <SalesShortcutCaseStudyPage />;
+  }
+
+  if (slug === 'systems') {
+    return <UnicefSystemsCaseStudyPage />;
   }
 
   const item = caseStudies[slug];

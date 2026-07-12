@@ -1876,3 +1876,124 @@ img {
     height: 6px;
   }
 }
+
+
+/* v29 Sales Shortcut spacing rhythm fix */
+.sales-shortcut-case-page .case-copy-block {
+  margin: 64px auto 56px;
+}
+
+.sales-shortcut-case-page .case-copy-block + .sales-logo-grid,
+.sales-shortcut-case-page .case-copy-block + .sales-carousel,
+.sales-shortcut-case-page .case-copy-block + .case-image-block {
+  margin-top: 0;
+}
+
+.sales-shortcut-case-page .sales-logo-grid,
+.sales-shortcut-case-page .sales-carousel {
+  margin-bottom: 56px;
+}
+
+.sales-shortcut-case-page .sales-logo-grid + .case-copy-block,
+.sales-shortcut-case-page .sales-carousel + .case-copy-block,
+.sales-shortcut-case-page .case-image-block + .case-copy-block {
+  margin-top: 64px;
+}
+
+@media (max-width: 760px) {
+  .sales-shortcut-case-page .case-copy-block {
+    margin: 42px 16px 34px;
+  }
+
+  .sales-shortcut-case-page .case-copy-block + .sales-logo-grid,
+  .sales-shortcut-case-page .case-copy-block + .sales-carousel,
+  .sales-shortcut-case-page .case-copy-block + .case-image-block {
+    margin-top: 0;
+  }
+
+  .sales-shortcut-case-page .sales-logo-grid,
+  .sales-shortcut-case-page .sales-carousel {
+    margin-bottom: 38px;
+  }
+
+  .sales-shortcut-case-page .sales-logo-grid + .case-copy-block,
+  .sales-shortcut-case-page .sales-carousel + .case-copy-block,
+  .sales-shortcut-case-page .case-image-block + .case-copy-block {
+    margin-top: 42px;
+  }
+}
+
+
+/* v30 UNICEF Creative Systems case study */
+.systems-case-page .case-copy-block {
+  margin: 64px auto 56px;
+}
+
+.systems-case-page .case-copy-block + .case-image-block,
+.systems-case-page .case-copy-block + .systems-badge-grid {
+  margin-top: 0;
+}
+
+.systems-case-page .case-image-block + .case-copy-block,
+.systems-case-page .systems-badge-grid + .case-copy-block {
+  margin-top: 64px;
+}
+
+.systems-badge-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin: 42px 0 58px;
+}
+
+.systems-badge-card {
+  text-align: center;
+}
+
+.systems-badge-card img {
+  width: 100%;
+  max-width: 190px;
+  display: block;
+  margin: 0 auto 18px;
+}
+
+.systems-badge-card p {
+  max-width: 210px;
+  margin: 0 auto;
+  color: var(--text);
+  font-size: 12.5px;
+  line-height: 1.45;
+  font-weight: 620;
+  letter-spacing: -0.015em;
+}
+
+.systems-social-block {
+  margin-top: 0;
+}
+
+@media (max-width: 760px) {
+  .systems-case-page .case-copy-block {
+    margin: 42px 16px 34px;
+  }
+
+  .systems-case-page .case-image-block + .case-copy-block,
+  .systems-case-page .systems-badge-grid + .case-copy-block {
+    margin-top: 42px;
+  }
+
+  .systems-badge-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px 14px;
+    margin: 30px 0 42px;
+  }
+
+  .systems-badge-card img {
+    max-width: 132px;
+    margin-bottom: 12px;
+  }
+
+  .systems-badge-card p {
+    font-size: 10.5px;
+    line-height: 1.42;
+  }
+}
