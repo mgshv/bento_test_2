@@ -1,0 +1,1878 @@
+:root {
+  --bg: #eaf2f5;
+  --card: #ffffff;
+  --text: #0f1518;
+  --muted: rgba(15, 21, 24, 0.56);
+  --line: rgba(15, 21, 24, 0.1);
+  --accent: #b8ff4d;
+  --shadow: 0 24px 70px rgba(32, 52, 62, 0.08);
+  --dot: rgba(12, 18, 22, 0.1);
+  --glass: rgba(255, 255, 255, 0.54);
+  --glass-border: rgba(255, 255, 255, 0.68);
+}
+
+:root.dark {
+  --bg: #111111;
+  --card: #1c1c1c;
+  --text: #f5f5f5;
+  --muted: rgba(245, 245, 245, 0.62);
+  --line: rgba(245, 245, 245, 0.13);
+  --accent: #b8ff4d;
+  --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+  --dot: rgba(255, 255, 255, 0.1);
+  --glass: rgba(255, 255, 255, 0.14);
+  --glass-border: rgba(255, 255, 255, 0.24);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  transition: background 0.28s ease, color 0.28s ease;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.app-shell {
+  min-height: 100vh;
+  padding: 0 22px 110px;
+}
+
+.site-header {
+  display: grid;
+  place-items: center;
+  padding: 54px 0 44px;
+}
+
+.brand-name {
+  font-size: 22px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.home-grid {
+  width: min(100%, 1128px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 300px 250px 250px 280px;
+  grid-template-rows: 260px 240px 315px 265px 265px;
+  gap: 16px;
+  grid-template-areas:
+    "about about profile imoney"
+    "clients exp exp imoney"
+    "testimonials exp exp ramadan"
+    "phillip phillip shortcut ramadan"
+    "social other systems systems";
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  background: var(--card);
+  border-radius: 28px;
+  box-shadow: var(--shadow);
+  transition: background 0.28s ease, box-shadow 0.28s ease, transform 0.28s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+}
+
+.label {
+  position: relative;
+  z-index: 5;
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: var(--accent);
+  color: #061006;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px) scale(0.985);
+  filter: blur(8px);
+  transition:
+    opacity 0.72s cubic-bezier(0.2, 0.8, 0.2, 1),
+    transform 0.72s cubic-bezier(0.2, 0.8, 0.2, 1),
+    filter 0.72s cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 0.28s ease;
+  transition-delay: var(--delay, 0ms);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+.about-card {
+  grid-area: about;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.about-card p {
+  margin: 0;
+  max-width: 500px;
+  font-size: 18px;
+  line-height: 1.46;
+  letter-spacing: -0.025em;
+  font-weight: 520;
+}
+
+.about-card p span {
+  color: var(--muted);
+  font-weight: 520;
+}
+
+.profile-card {
+  grid-area: profile;
+  display: grid;
+  place-items: center;
+  padding: 22px;
+}
+
+.profile-frame {
+  width: 118px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #ff7447;
+}
+
+.profile-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.clients-card {
+  grid-area: clients;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 0;
+}
+
+.logo-mask {
+  width: 82%;
+  min-height: 128px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  mask-image: linear-gradient(to right, transparent, black 16%, black 84%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 16%, black 84%, transparent);
+}
+
+.logo-track {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  gap: 90px;
+  animation: logoMarquee 58s linear infinite;
+}
+
+.logo-track img {
+  width: auto;
+  height: 128px;
+  max-width: none;
+  flex: 0 0 auto;
+}
+
+@keyframes logoMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(-50% - 45px)); }
+}
+
+.testimonial-card {
+  grid-area: testimonials;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.testimonial-copy {
+  animation: testimonialIn 0.32s ease;
+}
+
+@keyframes testimonialIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.testimonial-copy {
+  margin-top: 0;
+  padding-right: 22px;
+}
+
+.testimonial-copy p {
+  margin: 0 0 34px;
+  max-width: 230px;
+  color: var(--muted);
+  font-size: 14.5px;
+  line-height: 1.48;
+  font-weight: 560;
+}
+
+.testimonial-copy strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.testimonial-copy span {
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.round-next {
+  position: absolute;
+  right: 20px;
+  bottom: 18px;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #061006;
+}
+
+.experience-card {
+  grid-area: exp;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+
+.job-list {
+  margin-top: 60px;
+}
+
+.job-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 18px;
+  padding: 17px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.job-row:last-child {
+  border-bottom: 0;
+}
+
+.job-row h3,
+.job-row p {
+  margin: 0;
+}
+
+.job-row h3 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.job-row p,
+.job-row span {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.job-row span {
+  align-self: center;
+  white-space: nowrap;
+}
+
+.pill-button {
+  margin-top: auto;
+  display: inline-flex;
+  width: max-content;
+  align-items: center;
+  gap: 6px;
+  min-height: 42px;
+  padding: 0 20px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 900;
+  transition: border 0.28s ease, transform 0.28s ease;
+}
+
+.pill-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--text);
+}
+
+.case-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  isolation: isolate;
+}
+
+.case-card::before,
+.other-cases-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.9;
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+.case-card h2,
+.other-cases-card h2 {
+  position: relative;
+  z-index: 6;
+  margin: auto 0 0;
+  max-width: 300px;
+  display: block;
+  padding-right: 28px;
+  font-size: 20px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.case-card h2 svg,
+.other-cases-card h2 svg {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.case-card::after,
+.other-cases-card::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 4;
+  height: 42%;
+  background: linear-gradient(to top, var(--card) 20%, color-mix(in srgb, var(--card) 68%, transparent), transparent);
+  pointer-events: none;
+}
+
+.case-card .case-visual {
+  position: absolute;
+  z-index: 2;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  filter: drop-shadow(0 18px 30px rgba(0, 0, 0, 0.14));
+  animation: floatMockup 5.4s ease-in-out infinite;
+}
+
+@keyframes floatMockup {
+  0%, 100% { transform: translateY(0) rotate(var(--rotate, 0deg)); }
+  50% { transform: translateY(-12px) rotate(var(--rotate, 0deg)); }
+}
+
+.case-imoney { grid-area: imoney; }
+.case-ramadan { grid-area: ramadan; }
+.case-phillip { grid-area: phillip; }
+.case-shortcut { grid-area: shortcut; }
+.case-systems { grid-area: systems; }
+
+.case-imoney .case-visual {
+  width: 145%;
+  max-width: none;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation-name: floatImoney;
+}
+
+@keyframes floatImoney {
+  0%, 100% { transform: translate(-50%, 0); }
+  50% { transform: translate(-50%, -12px); }
+}
+
+.case-ramadan .case-visual {
+  --rotate: -15deg;
+  width: 72%;
+  max-width: none;
+  right: -60px;
+  top: 54px;
+}
+
+.case-phillip .case-visual {
+  width: 64%;
+  max-width: none;
+  right: -10px;
+  bottom: -62px;
+}
+
+.case-shortcut .case-visual {
+  width: 118%;
+  max-width: none;
+  right: -54px;
+  top: 42px;
+}
+
+.case-systems .case-visual {
+  width: 58%;
+  max-width: none;
+  right: -2px;
+  top: 0;
+}
+
+.social-stack {
+  grid-area: social;
+  display: grid;
+  gap: 16px;
+}
+
+.social-card {
+  min-height: 69px;
+  padding: 0 22px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  border-radius: 20px;
+}
+
+.social-card strong {
+  margin-left: auto;
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.other-cases-card {
+  grid-area: other;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.other-cases-card img {
+  position: absolute;
+  z-index: 2;
+  width: 108%;
+  max-width: none;
+  top: 18px;
+  right: -54px;
+  filter: drop-shadow(0 18px 28px rgba(0, 0, 0, 0.12));
+  animation: floatOther 6s ease-in-out infinite;
+}
+
+@keyframes floatOther {
+  0%, 100% { transform: translateY(0) rotate(2deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.theme-switch {
+  position: fixed;
+  left: 50%;
+  bottom: 28px;
+  z-index: 80;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  padding: 7px;
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  background: var(--glass);
+  backdrop-filter: blur(22px) saturate(150%);
+  -webkit-backdrop-filter: blur(22px) saturate(150%);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+}
+
+.theme-switch button {
+  width: 43px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  transition: 0.22s ease;
+}
+
+.theme-switch button.active {
+  background: rgba(255, 255, 255, 0.76);
+  color: #0f1518;
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
+}
+
+:root.dark .theme-switch button.active {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.case-page {
+  width: min(100%, 1040px);
+  margin: 0 auto;
+  padding: 56px 0 140px;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 24px;
+  color: var(--muted);
+  font-weight: 800;
+}
+
+.case-hero {
+  min-height: 620px;
+  padding: 42px;
+}
+
+.case-hero h1 {
+  max-width: 680px;
+  margin: 46px 0 18px;
+  font-size: clamp(38px, 7vw, 86px);
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+  font-weight: 700;
+}
+
+.case-hero p {
+  max-width: 560px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 18px;
+  line-height: 1.55;
+  font-weight: 600;
+}
+
+.case-hero img {
+  position: absolute;
+  right: -5%;
+  bottom: -8%;
+  width: min(70%, 760px);
+  object-fit: contain;
+}
+
+@media (max-width: 1120px) {
+  .home-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-areas:
+      "about about profile profile"
+      "clients exp exp imoney"
+      "testimonials exp exp imoney"
+      "phillip phillip ramadan ramadan"
+      "social other systems systems";
+  }
+}
+
+@media (max-width: 760px) {
+  .app-shell {
+    padding: 0 14px 120px;
+    overflow-x: hidden;
+  }
+
+  .site-header {
+    padding: 34px 0 26px;
+  }
+
+  .brand-name {
+    font-size: 17px;
+  }
+
+  .home-grid {
+    width: min(100%, 430px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: none;
+    grid-auto-rows: auto;
+    gap: 14px;
+    align-items: stretch;
+    grid-template-areas:
+      "about about"
+      "profile clients"
+      "testimonials testimonials"
+      "exp exp"
+      "imoney imoney"
+      "ramadan ramadan"
+      "phillip phillip"
+      "shortcut shortcut"
+      "systems systems"
+      "social social"
+      "other other";
+  }
+
+  .card {
+    border-radius: 22px;
+  }
+
+  .label {
+    min-height: 30px;
+    padding: 0 16px;
+    font-size: 13px;
+    font-weight: 900;
+  }
+
+  .reveal {
+    transform: translateY(38px) scale(0.98);
+    filter: blur(10px);
+  }
+
+  .about-card {
+    min-height: 430px;
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  .about-card p {
+    max-width: 100%;
+    font-size: 20px;
+    line-height: 1.34;
+    letter-spacing: -0.045em;
+    font-weight: 700;
+  }
+
+  .about-card p span {
+    font-weight: 700;
+  }
+
+  .profile-card,
+  .clients-card {
+    min-height: 250px;
+    padding: 22px;
+  }
+
+  .profile-card {
+    display: grid;
+    place-items: center;
+  }
+
+  .profile-frame {
+    width: 138px;
+  }
+
+  .clients-card {
+    justify-content: flex-start;
+    gap: 36px;
+  }
+
+  .logo-mask {
+    width: 100%;
+    min-height: 132px;
+  }
+
+  .logo-track {
+    gap: 72px;
+    animation-duration: 78s;
+  }
+
+  .logo-track img {
+    width: auto;
+    height: 142px;
+  }
+
+  .testimonial-card {
+    min-height: 350px;
+    padding: 24px;
+  }
+
+  .testimonial-copy {
+    padding-right: 54px;
+  }
+
+  .testimonial-copy p {
+    max-width: 320px;
+    margin-top: 54px;
+    margin-bottom: 28px;
+    font-size: 19px;
+    line-height: 1.32;
+    letter-spacing: -0.035em;
+    font-weight: 700;
+  }
+
+  .testimonial-copy strong {
+    font-size: 15px;
+  }
+
+  .testimonial-copy span {
+    font-size: 15px;
+  }
+
+  .round-next {
+    right: 18px;
+    bottom: 18px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .round-next svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .experience-card {
+    min-height: 520px;
+    padding: 24px;
+    overflow: hidden;
+  }
+
+  .job-list {
+    margin-top: 54px;
+  }
+
+  .job-row {
+    padding: 18px 0;
+    gap: 14px;
+  }
+
+  .job-row h3 {
+    font-size: 17px;
+  }
+
+  .job-row p,
+  .job-row span {
+    font-size: 16px;
+  }
+
+  .pill-button {
+    min-height: 40px;
+    padding: 0 18px;
+    font-size: 12px;
+  }
+
+  .case-card {
+    min-height: 250px;
+    padding: 20px;
+    overflow: hidden;
+  }
+
+  .case-card h2,
+  .other-cases-card h2 {
+    max-width: 315px;
+    font-size: 22px;
+    line-height: 1.02;
+    letter-spacing: -0.05em;
+  }
+
+  .case-imoney {
+    min-height: 365px;
+  }
+
+  .case-imoney .case-visual {
+    width: 112%;
+    top: 62px;
+  }
+
+  .case-ramadan {
+    min-height: 430px;
+  }
+
+  .case-ramadan .case-visual {
+    --rotate: -14deg;
+    width: 70%;
+    right: -36px;
+    top: 58px;
+  }
+
+  .case-phillip {
+    min-height: 300px;
+  }
+
+  .case-phillip .case-visual {
+    width: 88%;
+    right: -20px;
+    bottom: -38px;
+  }
+
+  .case-shortcut {
+    display: flex;
+    min-height: 300px;
+  }
+
+  .case-shortcut .case-visual {
+    width: 106%;
+    right: -22px;
+    top: 58px;
+  }
+
+  .case-systems {
+    min-height: 330px;
+  }
+
+  .case-systems .case-visual {
+    width: 98%;
+    right: -54px;
+    top: 22px;
+    bottom: auto;
+  }
+
+  .social-stack {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .social-card {
+    min-height: 92px;
+    padding: 14px;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .social-card svg {
+    width: 30px;
+    height: 30px;
+  }
+
+  .social-card strong {
+    margin-left: 0;
+    font-size: 13px;
+  }
+
+  .other-cases-card {
+    min-height: 320px;
+    padding: 20px;
+  }
+
+  .other-cases-card img {
+    width: 106%;
+    right: -28px;
+    top: 22px;
+  }
+
+  .theme-switch {
+    bottom: 18px;
+    padding: 7px;
+  }
+
+  .theme-switch button {
+    width: 48px;
+    height: 40px;
+  }
+
+  .case-page {
+    padding: 30px 0 110px;
+  }
+
+  .case-hero {
+    min-height: 580px;
+    padding: 24px;
+  }
+
+  .case-hero img {
+    width: 115%;
+    right: -32%;
+    bottom: -2%;
+  }
+}
+
+@media (max-width: 390px) {
+  .about-card {
+    min-height: 450px;
+  }
+
+  .about-card p {
+    font-size: 19px;
+  }
+
+  .profile-card,
+  .clients-card {
+    min-height: 238px;
+  }
+
+  .profile-frame {
+    width: 128px;
+  }
+
+  .logo-track img {
+    height: 132px;
+  }
+}
+
+/* iMoney Case Study Page */
+.imoney-case-page {
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  padding: 64px 0 150px;
+}
+
+.case-back-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 0 18px;
+  margin: 0 0 18px;
+  border-radius: 999px;
+  background: var(--glass);
+  color: var(--text);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(18px) saturate(150%);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.09);
+  font-size: 14px;
+  line-height: 1;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.case-back-pill:hover {
+  transform: translateY(-1px);
+}
+
+.imoney-case-intro {
+  min-height: 112px;
+  padding: 26px 34px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.case-section-card {
+  overflow: hidden;
+  background: var(--card);
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+}
+
+.imoney-case-intro h1 {
+  margin: 0 0 10px;
+  font-size: 22px;
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.imoney-case-intro p {
+  max-width: 660px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+  font-weight: 600;
+}
+
+.case-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 16px 0 28px;
+}
+
+.case-meta-card {
+  min-height: 128px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.case-meta-card strong {
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.case-image-block {
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  background: var(--card);
+}
+
+.case-image-block img {
+  width: 100%;
+  height: auto;
+}
+
+.case-copy-block {
+  max-width: 900px;
+  margin: 56px auto 0;
+}
+
+.case-copy-block h2,
+.case-copy-block h3,
+.case-copy-block p {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.case-copy-block h2 {
+  margin-top: 0;
+  margin-bottom: 32px;
+  font-size: 18px;
+  line-height: 1.2;
+  letter-spacing: -0.035em;
+  font-weight: 700;
+}
+
+.case-copy-block h2:not(:first-child) {
+  margin-top: 54px;
+}
+
+.case-copy-block h3 {
+  margin-top: 38px;
+  margin-bottom: 26px;
+  font-size: 17px;
+  line-height: 1.25;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+.case-copy-block p {
+  margin-top: 0;
+  margin-bottom: 24px;
+  color: var(--text);
+  font-size: 16.5px;
+  line-height: 1.72;
+  font-weight: 520;
+}
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin: 46px 0 60px;
+}
+
+.unicef-results-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.result-metric-card {
+  min-height: 188px;
+  padding: 18px;
+  overflow: hidden;
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.result-metric-card img {
+  width: 100%;
+  height: calc(100% - 34px);
+  margin-top: 12px;
+  object-fit: contain;
+  object-position: center bottom;
+}
+
+:root.dark .result-metric-card img {
+  filter: invert(1) hue-rotate(180deg) contrast(0.94);
+}
+
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 18px;
+  margin: 42px 0 78px;
+}
+
+.scenario-card {
+  min-height: 188px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--card);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.scenario-card .label {
+  min-height: 32px;
+  padding: 0 14px;
+  font-size: 11px;
+}
+
+.scenario-card strong {
+  font-size: 17px;
+  line-height: 1.3;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.retargeting-grid {
+  width: 100%;
+  max-width: none;
+  margin: 80px auto 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.retargeting-card {
+  min-height: 260px;
+  padding: 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--card);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.retargeting-card span {
+  width: 54px;
+  height: 54px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #061006;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.retargeting-card strong {
+  font-size: 21px;
+  line-height: 1.35;
+  letter-spacing: -0.04em;
+  font-weight: 700;
+}
+
+.case-video-block {
+  margin-top: 56px;
+  overflow: hidden;
+  border-radius: 24px;
+  box-shadow: var(--shadow);
+  background: var(--card);
+}
+
+.case-video-player {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #000;
+}
+
+@media (max-width: 760px) {
+  .imoney-case-page {
+    width: min(calc(100% - 44px), 390px);
+    padding: 24px 0 128px;
+  }
+
+  .case-back-pill {
+    min-height: 36px;
+    padding: 0 14px;
+    margin-bottom: 10px;
+    font-size: 11px;
+  }
+
+  .imoney-case-intro {
+    min-height: 100px;
+    padding: 20px 18px;
+    border-radius: 18px;
+  }
+
+  .imoney-case-intro h1 {
+    margin-bottom: 8px;
+    font-size: 14.5px;
+    line-height: 1.18;
+  }
+
+  .imoney-case-intro p {
+    max-width: 285px;
+    font-size: 9.5px;
+    line-height: 1.45;
+    font-weight: 600;
+  }
+
+  .case-meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 10px 0 14px;
+  }
+
+  .case-meta-card {
+    min-height: 92px;
+    padding: 14px;
+    border-radius: 12px;
+  }
+
+  .case-meta-card:nth-child(3) {
+    grid-column: 1 / -1;
+  }
+
+  .case-meta-card .label {
+    min-height: 20px;
+    padding: 0 9px;
+    font-size: 8px;
+  }
+
+  .case-meta-card strong {
+    font-size: 9.5px;
+  }
+
+  .case-image-block {
+    border-radius: 14px;
+  }
+
+  .case-copy-block {
+    max-width: none;
+    margin: 34px 14px 0;
+  }
+
+  .case-copy-block h2 {
+    margin-bottom: 21px;
+    font-size: 12.5px;
+    line-height: 1.2;
+  }
+
+  .case-copy-block h2:not(:first-child) {
+    margin-top: 38px;
+  }
+
+  .case-copy-block h3 {
+    margin-top: 28px;
+    margin-bottom: 18px;
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+  .case-copy-block p {
+    margin-bottom: 18px;
+    font-size: 9.8px;
+    line-height: 1.72;
+    font-weight: 560;
+  }
+
+  .results-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin: 28px 0 38px;
+  }
+
+  .unicef-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-metric-card {
+    min-height: 164px;
+    padding: 14px;
+    border-radius: 13px;
+  }
+
+  .result-metric-card .label {
+    min-height: 20px;
+    padding: 0 9px;
+    font-size: 8px;
+  }
+
+  .result-metric-card img {
+    width: 100%;
+    height: 122px;
+    margin-top: 6px;
+    object-fit: contain;
+    object-position: center bottom;
+  }
+
+  .scenario-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 28px 0 18px;
+  }
+
+  .scenario-card {
+    min-height: 102px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .scenario-card:nth-child(5) {
+    grid-column: 1 / -1;
+    min-height: 96px;
+  }
+
+  .scenario-card .label {
+    min-height: 20px;
+    padding: 0 8px;
+    font-size: 7.4px;
+    max-width: max-content;
+  }
+
+  .scenario-card strong {
+    font-size: 9px;
+    line-height: 1.28;
+    letter-spacing: -0.025em;
+  }
+
+  .retargeting-grid {
+    width: 100%;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    margin: 34px auto 0;
+  }
+
+  .retargeting-card {
+    min-height: 118px;
+    padding: 18px;
+    border-radius: 13px;
+  }
+
+  .retargeting-card span {
+    width: 28px;
+    height: 28px;
+    font-size: 8px;
+  }
+
+  .retargeting-card strong {
+    font-size: 10px;
+    line-height: 1.34;
+  }
+
+  .case-video-block {
+    margin-top: 34px;
+    border-radius: 14px;
+  }
+}
+
+/* v17 iMoney mobile readability tuning only */
+@media (max-width: 760px) {
+  .imoney-case-page {
+    width: min(calc(100% - 30px), 430px);
+    padding: 24px 0 128px;
+  }
+
+  .imoney-case-intro {
+    min-height: 128px;
+    padding: 24px 22px;
+    border-radius: 18px;
+  }
+
+  .imoney-case-intro h1 {
+    margin-bottom: 10px;
+    font-size: 18px;
+    line-height: 1.15;
+    letter-spacing: -0.04em;
+  }
+
+  .imoney-case-intro p {
+    max-width: 330px;
+    font-size: 12px;
+    line-height: 1.48;
+    font-weight: 600;
+  }
+
+  .case-meta-grid {
+    gap: 12px;
+    margin: 12px 0 16px;
+  }
+
+  .case-meta-card {
+    min-height: 104px;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .case-meta-card .label,
+  .result-metric-card .label {
+    min-height: 24px;
+    padding: 0 11px;
+    font-size: 9.5px;
+  }
+
+  .case-meta-card strong {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
+  .case-image-block {
+    border-radius: 15px;
+  }
+
+  .case-copy-block {
+    margin: 38px 14px 0;
+  }
+
+  .case-copy-block h2 {
+    margin-bottom: 20px;
+    font-size: 15px;
+    line-height: 1.25;
+  }
+
+  .case-copy-block h2:not(:first-child) {
+    margin-top: 40px;
+  }
+
+  .case-copy-block h3 {
+    margin-top: 28px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .case-copy-block p {
+    margin-bottom: 18px;
+    font-size: 12.8px;
+    line-height: 1.68;
+    font-weight: 560;
+  }
+
+  .results-grid {
+    gap: 12px;
+    margin: 30px 0 40px;
+  }
+
+  .unicef-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-metric-card {
+    min-height: 190px;
+    padding: 15px;
+    border-radius: 14px;
+  }
+
+  .result-metric-card img {
+    height: 148px;
+    margin-top: 6px;
+  }
+
+  .scenario-grid {
+    gap: 12px;
+    margin: 30px 0 20px;
+  }
+
+  .scenario-card {
+    min-height: 118px;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .scenario-card:nth-child(5) {
+    min-height: 104px;
+  }
+
+  .scenario-card .label {
+    min-height: 22px;
+    padding: 0 9px;
+    font-size: 8px;
+    line-height: 1;
+  }
+
+  .scenario-card strong {
+    font-size: 11px;
+    line-height: 1.32;
+    letter-spacing: -0.025em;
+  }
+
+  .retargeting-grid {
+    gap: 12px;
+    margin: 34px auto 0;
+  }
+
+  .retargeting-card {
+    min-height: 96px;
+    padding: 16px;
+    border-radius: 14px;
+    justify-content: flex-start;
+    gap: 18px;
+  }
+
+  .retargeting-card span {
+    width: 26px;
+    height: 26px;
+    font-size: 8.5px;
+    flex: 0 0 auto;
+  }
+
+  .retargeting-card strong {
+    font-size: 12px;
+    line-height: 1.34;
+    letter-spacing: -0.025em;
+  }
+
+  .case-video-block {
+    margin-top: 36px;
+    border-radius: 15px;
+  }
+}
+
+/* v18 iMoney mobile: match provided Figma readability, desktop untouched */
+@media (max-width: 760px) {
+  .imoney-case-page {
+    width: min(calc(100% - 28px), 430px);
+    padding: 22px 0 132px;
+  }
+
+  .imoney-case-intro {
+    min-height: 132px;
+    padding: 24px 22px;
+    border-radius: 18px;
+  }
+
+  .imoney-case-intro h1 {
+    font-size: 18.5px;
+    line-height: 1.15;
+    margin-bottom: 10px;
+  }
+
+  .imoney-case-intro p {
+    max-width: 340px;
+    font-size: 13px;
+    line-height: 1.5;
+    font-weight: 600;
+  }
+
+  .case-meta-grid {
+    gap: 12px;
+    margin: 12px 0 18px;
+  }
+
+  .case-meta-card {
+    min-height: 112px;
+    padding: 17px;
+    border-radius: 14px;
+  }
+
+  .case-meta-card .label,
+  .result-metric-card .label,
+  .scenario-card .label {
+    min-height: 24px;
+    padding: 0 11px;
+    font-size: 10px;
+    line-height: 1;
+    font-weight: 800;
+  }
+
+  .case-meta-card strong {
+    font-size: 13.5px;
+    line-height: 1.2;
+  }
+
+  .case-copy-block {
+    margin: 38px 16px 0;
+  }
+
+  .case-copy-block h2 {
+    margin-bottom: 22px;
+    font-size: 17px;
+    line-height: 1.25;
+    letter-spacing: -0.03em;
+  }
+
+  .case-copy-block h2:not(:first-child) {
+    margin-top: 42px;
+  }
+
+  .case-copy-block h3 {
+    margin-top: 30px;
+    margin-bottom: 18px;
+    font-size: 15px;
+    line-height: 1.35;
+    letter-spacing: -0.025em;
+  }
+
+  .case-copy-block p {
+    margin-bottom: 20px;
+    font-size: 14.6px;
+    line-height: 1.66;
+    font-weight: 540;
+  }
+
+  .results-grid {
+    gap: 14px;
+    margin: 32px 0 42px;
+  }
+
+  .unicef-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .result-metric-card {
+    min-height: 205px;
+    padding: 16px;
+    border-radius: 15px;
+  }
+
+  .result-metric-card img {
+    height: 162px;
+    margin-top: 7px;
+  }
+
+  .scenario-grid {
+    gap: 12px;
+    margin: 32px 0 22px;
+  }
+
+  .scenario-card {
+    min-height: 126px;
+    padding: 14px;
+    border-radius: 14px;
+  }
+
+  .scenario-card:nth-child(5) {
+    min-height: 112px;
+  }
+
+  .scenario-card strong {
+    font-size: 12.4px;
+    line-height: 1.32;
+    letter-spacing: -0.025em;
+  }
+
+  .retargeting-grid {
+    gap: 12px;
+    margin: 34px auto 0;
+  }
+
+  .retargeting-card {
+    min-height: 112px;
+    padding: 16px;
+    border-radius: 14px;
+    justify-content: flex-start;
+    gap: 16px;
+  }
+
+  .retargeting-card span {
+    width: 28px;
+    height: 28px;
+    font-size: 9.5px;
+    flex: 0 0 auto;
+  }
+
+  .retargeting-card strong {
+    font-size: 13px;
+    line-height: 1.34;
+    letter-spacing: -0.025em;
+  }
+
+  .case-video-block {
+    margin-top: 38px;
+    border-radius: 15px;
+  }
+}
+
+/* v22 Phillip Nova case study */
+.dual-media-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 46px 0 60px;
+}
+
+.media-card {
+  min-height: 460px;
+  display: grid;
+  place-items: center;
+}
+
+.media-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.media-card:not(.media-card-gif) img {
+  object-fit: contain;
+}
+
+.phillip-results-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.image-only-card {
+  min-height: 236px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.image-only-card img {
+  width: 100%;
+  height: calc(100% - 40px);
+  margin-top: 12px;
+  object-fit: contain;
+  object-position: center;
+}
+
+@media (max-width: 760px) {
+  .dual-media-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 30px 0 40px;
+  }
+
+  .media-card {
+    min-height: 220px;
+    border-radius: 15px;
+  }
+
+  .media-card.media-card-gif {
+    min-height: 260px;
+  }
+
+  .phillip-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .image-only-card {
+    min-height: 184px;
+    padding: 16px;
+    border-radius: 15px;
+  }
+
+  .image-only-card img {
+    height: calc(100% - 36px);
+    margin-top: 8px;
+    object-fit: contain;
+  }
+}
+
+/* v27 Sales Shortcut case study */
+.sales-logo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin: 46px 0 56px;
+}
+
+.sales-logo-card {
+  aspect-ratio: 1 / 1;
+  display: grid;
+  place-items: center;
+  background: var(--card);
+}
+
+.sales-logo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.sales-carousel {
+  position: relative;
+  margin: 46px 0 60px;
+  overflow: hidden;
+  background: var(--card);
+}
+
+.sales-carousel img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 5;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #061006;
+  box-shadow: 0 14px 34px rgba(0, 0, 0, 0.18);
+  transform: translateY(-50%);
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.carousel-prev { left: 20px; }
+.carousel-next { right: 20px; }
+
+.carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: 16px;
+  z-index: 5;
+  display: flex;
+  gap: 8px;
+  transform: translateX(-50%);
+}
+
+.carousel-dots span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(0, 0, 0, 0.18);
+}
+
+.carousel-dots span.active {
+  background: var(--accent);
+}
+
+@media (max-width: 760px) {
+  .sales-logo-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    margin: 32px 0 40px;
+  }
+
+  .sales-logo-card {
+    aspect-ratio: 1 / 1;
+    border-radius: 15px;
+  }
+
+  .sales-carousel {
+    margin: 32px 0 42px;
+    border-radius: 15px;
+  }
+
+  .carousel-nav {
+    width: 34px;
+    height: 34px;
+    font-size: 26px;
+  }
+
+  .carousel-prev { left: 12px; }
+  .carousel-next { right: 12px; }
+
+  .carousel-dots {
+    bottom: 10px;
+    gap: 6px;
+  }
+
+  .carousel-dots span {
+    width: 6px;
+    height: 6px;
+  }
+}
